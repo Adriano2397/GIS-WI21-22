@@ -7,5 +7,5 @@
 </br> 
 
 ### **2. CSS-Grundlagen**
-  * Code:
-  * GitHub Pages: 
+  * Code:https://github.com/Adriano2397/GIS-WI21-22/tree/main/Aufgabe2
+  * GitHub Pages: https://adriano2397.github.io/GIS-WI21-22/Aufgabe2/
