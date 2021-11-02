@@ -28,20 +28,20 @@ h1{
   
 
 }
-.Bild
-{
-width: auto;
-border:  2px;
-border-radius: 1em 1em 1em 1em;
-margin: auto;
-padding: 1em;
+#Absatz1{
+bottom: 400px;
+width: 200px;
+color: white;
+background-color:rgb(0, 0, 0);
+ 
+  
 
 }
 .Bild1
 {
 position: relative;
-right: 250px;
-bottom: 0px;
+right: 10px;
+bottom: 50px;
 width: auto;
 border-radius: 5em 1em 1em 5em;
 margin: auto;
@@ -50,8 +50,8 @@ padding: 1em;
 }
 .Bild2{
 position: relative;
-right: 320px;
-bottom: 250px;
+right: 25px;
+bottom: 300px;
 width: auto;
 border-radius: 1em 5em 5em 1em;
 margin: auto;
@@ -60,8 +60,8 @@ padding: 1em;
 }
 .Bild3{
     position: relative;
-    left: 655px;
-    bottom: 250px;
+    left: 900px;
+    bottom: 300px;
     width: auto;
     border-radius: 4em 1em 1em 4em;
     margin: auto;
