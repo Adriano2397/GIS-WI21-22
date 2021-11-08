@@ -157,3 +157,7 @@ body{
             color: orange;
         }
     }
+    tr:nth-of-type(3n) {
+        color: rgb(148, 16, 16);
+        
+    }
