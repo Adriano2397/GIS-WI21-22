@@ -63,9 +63,9 @@ console.log(events[i]);
 
 
 // Lösung d) ...
-function suche(s: string){
+function durchsuchen(name:string){
   for (var i = 1; i < events.length; i++) {
-  if (events [i] [0] == s)
+  if (events [i] [0] == name)
   return true;
   else
   return false;
@@ -107,7 +107,3 @@ class ConcertEvent{
 
 
 // Lösung h) ...
-let Concert: ConcertEvent = [
-  ["Mark Knopfler", 10.1]
-];
-
