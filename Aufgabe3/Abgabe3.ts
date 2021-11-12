@@ -57,20 +57,32 @@ console.log(`Die Länge ist ${ events.length}`);
 
 // Lösung b) ...
 for (let i: number = 0; i < events.length; i++) {
-console.log(events[i]);
+console.log(events[i]);}
+
 // Lösung c) ...
+
+let maxPreis: number = 0;
+for (let i = 0; i < events.length; i++){
+  if (events [i][1]> maxPreis){
+    maxPreis = events[i][1];
+  }
+
+}
 
 
 
 // Lösung d) ...
-function durchsuchen(name:string){
-  for (var i = 1; i < events.length; i++) {
-  if (events [i] [0] == name)
-  return true;
-  else
+function searchInterpret(array: any[][], name: string): boolean{
+  for(const entry of array){
+    if(entry[0] === name){
+    return true;
+    }
+  }
   return false;
-  }
-  }
+}
+
+
+
 
  
 
@@ -82,6 +94,8 @@ function factorial(n: number) {
   f = f * ++i ; 
   return f; 
   }
+
+  
 // Lösung f) ...
 function teilbar() {
   for (let i: number = 1; i <= 100; i++) {
@@ -106,4 +120,19 @@ class ConcertEvent{
     }
 
 
-// Lösung h) ...
+// Lösung h) 
+let ConcertEvents: ConcertEvent [] = [];
+ConcertEvents.push(new ConcertEvent("Mark Knopfler", 10.1));
+ConcertEvents.push(new ConcertEvent("Pink Floyd", 15.9));
+ConcertEvents.push(new ConcertEvent("Metallica", 20.1));
+ConcertEvents.push(new ConcertEvent("Michael Bublé", 11.1));
+ConcertEvents.push(new ConcertEvent("Dire Straits", 12.2));
+ConcertEvents.push(new ConcertEvent("Mariah Carey", 1.1));
+ConcertEvents.push(new ConcertEvent("Cat Stevens", 12.99));
+ConcertEvents.push(new ConcertEvent("Mark Forster", 2.1));
+ConcertEvents.push(new ConcertEvent("Helene Fischer", 3.1));
+ConcertEvents.push(new ConcertEvent("Bee Gees", 25.2));
+
+for(let index = 0; index < ConcertEvents.length; index ++) {
+  console.log(ConcertEvents[index].show());
+}
