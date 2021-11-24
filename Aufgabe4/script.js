@@ -14,20 +14,19 @@ var Eventtabelle;
             this.price = price;
         }
         tabelleEintragen() {
-            const newZeile = document.createElement("tr");
-            const newInterpret = document.createElement("td");
-            newInterpret.textContent = this.interpret;
-            const newPrice = document.createElement("td");
-            newPrice.textContent = String(this.price);
-            display.appendChild(newZeile);
-            newZeile.appendChild(newInterpret);
-            newZeile.appendChild(newPrice);
         }
     }
     function mybuttonHandler() {
         let interpretValue = interpretInput.value;
         let priceValue = Number(priceInput.value);
-        new Event(interpretValue, priceValue);
+        const newZeile = document.createElement("tr");
+        const newInterpret = document.createElement("td");
+        newInterpret.textContent = interpretValue;
+        const newPrice = document.createElement("td");
+        newPrice.textContent = String(priceValue);
+        display.appendChild(newZeile);
+        newZeile.appendChild(newInterpret);
+        newZeile.appendChild(newPrice);
     }
 })(Eventtabelle || (Eventtabelle = {}));
 //# sourceMappingURL=script.js.map

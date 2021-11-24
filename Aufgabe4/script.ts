@@ -16,23 +16,24 @@ namespace Eventtabelle {
     }
 
     tabelleEintragen(): void{
-      const newZeile: HTMLTableRowElement = document.createElement("tr")
-      const newInterpret: HTMLTableCellElement = document.createElement("td");
-      newInterpret.textContent = this.interpret;
-      const newPrice: HTMLTableCellElement = document.createElement("td");
-      newPrice.textContent = String(this.price);
-
-      display.appendChild(newZeile);
-      newZeile.appendChild(newInterpret);
-      newZeile.appendChild(newPrice);
+      
 
     }
   }
+  
   
 
   function mybuttonHandler(){
     let interpretValue: string = interpretInput.value;
     let priceValue: number = Number(priceInput.value);
-    new Event(interpretValue, priceValue);
+    const newZeile: HTMLTableRowElement = document.createElement("tr")
+      const newInterpret: HTMLTableCellElement = document.createElement("td");
+      newInterpret.textContent = interpretValue;
+      const newPrice: HTMLTableCellElement = document.createElement("td");
+      newPrice.textContent = String(priceValue);
+
+      display.appendChild(newZeile);
+      newZeile.appendChild(newInterpret);
+      newZeile.appendChild(newPrice);
   }
 }
