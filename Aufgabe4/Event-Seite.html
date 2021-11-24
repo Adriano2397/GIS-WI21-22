@@ -7,24 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mailand, die Stadt der Liebe</title>
     <link href="style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 
-    
 
-   
+
+
 
 </head>
 
 <body>
     <header>
         <a href="index.html" class="link1">START</a>
-        <a href="Event-Seite.html"class="link">MAILAND</a>
+        <a href="Event-Seite.html" class="link">MAILAND</a>
     </header>
-    <main>     
-        
-        <img class="Bild4" src="dom.jpg" alt="Stadtbahn" width="600" height="300" style="float: right;">  
+    <main>
+
+        <img class="Bild4" src="dom.jpg" alt="Stadtbahn" width="600" height="300" style="float: right;">
 
         <div id="InfosMailand">
             <p>italienischer Name: Milano
@@ -60,12 +61,12 @@
         </div>
 
         <div id="Tabelle">
-           
+
 
             <table id="Tabelle">
                 <caption>
-                <h2>Übersicht für die anstehenden Unterhaltungen</h2>
-                </caption>  
+                    <h2>Übersicht für die anstehenden Unterhaltungen</h2>
+                </caption>
                 <tr>
 
                     <th>Datum </th>
@@ -96,37 +97,45 @@
 
         </div>
 
-        
-        <h3>Schon kann es losgehen !</h3>
+        <div id="Ausgabe">
+        <body>
+            
+                <label for="interpret">Interpret:
+                    <input name="interpret" id="interpretInput" placeholder="Interpret">
+                </label>
 
-        <p id="InfotextBuchung"> Schauen Sie sich das Video über die Stadt Mailand an.Lorem ipsum dolor sit amet, consetetur sadipscing
-            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-            takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-            takimata sanctus est Lorem ipsum dolor sit amet.
-            <a href="#Mailand">Sprung an den Anfang</a>
-        </p>
-    
+                <label for="Preis">Preis:
+                    <input type="number" name="price" id="priceInput" placeholder="Price">
+                </label>
+
+                <button id="enterButton" type="submit">Enter</button>
+            <div id="display">
+                <h4>EventTabelle</h4>
+                <tr>
+                    <th id="Interpret">Interpret</th>
+                    <th id="Price">Price</th>
+                </tr>
+            </div>
+
+
 
     </main>
 
 
     </table>
     <footer>
-    
-            <h7 id="Zahlungsmöglichkeiten">Zahlungsmöglichkeiten</h6>
-        
-        <ol id="TabelleZahlung"> 
-            <li>Paypal</li>
-            <li>Vorkasse</li>
-            <li>Kreditkarte</li>
-            <li>Klarna</li>
-        </ol>
-        <h6 >
-            Adriano Cappelli, HFU-Student OMB 2, Villingen-Schwenningen
-        </h6>
+
+        <h7 id="Zahlungsmöglichkeiten">Zahlungsmöglichkeiten</h6>
+
+            <ol id="TabelleZahlung">
+                <li>Paypal</li>
+                <li>Vorkasse</li>
+                <li>Kreditkarte</li>
+                <li>Klarna</li>
+            </ol>
+            <h6>
+                Adriano Cappelli, HFU-Student OMB 2, Villingen-Schwenningen
+            </h6>
 
 
 
