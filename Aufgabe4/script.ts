@@ -14,16 +14,16 @@ namespace Eventtabelle {
       this.interpret = interpret;
       this.price = price;
     }
-    set interpretName(name: string) {
+    set interpretInput(name: string) {
       this.interpret = name;
     }
     get interpretName(): string {
       return this.interpret;
     }
-    set priceZahl(price: number) {
+    set priceInput(price: number) {
       this.price = price;
     }
-    get priceZahl(): number {
+    get priceInput(): number {
       return this.price;
     }
   }

@@ -14,16 +14,16 @@ var Eventtabelle;
             this.interpret = interpret;
             this.price = price;
         }
-        set interpretName(name) {
+        set interpretInput(name) {
             this.interpret = name;
         }
         get interpretName() {
             return this.interpret;
         }
-        set priceZahl(price) {
+        set priceInput(price) {
             this.price = price;
         }
-        get priceZahl() {
+        get priceInput() {
             return this.price;
         }
     }
