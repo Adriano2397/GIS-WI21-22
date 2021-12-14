@@ -97,29 +97,28 @@
 
         </div>
 
-        <div id="Ausgabe">
-        <body>
-            <input id="inputElement" type="text"/>
-            <button id = "saveButton"> Save in Local Storage</button>
-            <button id ="loadbutton">Load from Local Storage</button>
-            <div><h3>Ausgabe:</h3></div>
-            
-                <label for="interpret">Interpret:
-                    <input name="interpret" id="interpretInput" placeholder="Interpret">
-                </label>
-
-                <label for="Preis">Preis:
-                    <input type="number" name="price" id="priceInput" placeholder="Price">
-                </label>
-
-                <button id="enterButton" type="submit">Enter</button>
-            <div id="display">
-                <h4>EventTabelle</h4>
-                <tr>
-                    <th id="Interpret">Interpret</th>
-                    <th id="Price">Price</th>
-                </tr>
+        <div class="Input">
+            <div class="field">
+                <Label>Interpret</Label>
+                <input type="text" name="interpret" id="interpret" placeholder="Interpret">
             </div>
+
+            <div class="field">
+                <Label>Price</Label>
+                <input type="number" name="price" id="price" placeholder="Price">
+            </div>
+
+          </div>
+          <button id="EnterButton" type="submit">Enter Event</button>
+          <div id="display">
+
+            <h4>Events Tabelle</h4>
+            <tr>
+                <th id="interpretSpalte">Interpret</th>
+                <th id="priceSpalte">Price</th>
+                <th id="deleteSpalte"><br/> </th>
+            </tr>
+          </div>
 
           
     </main>

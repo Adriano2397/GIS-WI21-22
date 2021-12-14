@@ -1,80 +1,99 @@
-namespace Eventtabelle {
+namespace EventTabelle {
 
-  const interpretInput: HTMLInputElement = <HTMLInputElement>document.getElementById("interpretInput");
-  const priceInput: HTMLInputElement = <HTMLInputElement>document.getElementById("priceInput");
-  const display: HTMLElement = <HTMLElement>document.getElementById("display");
-  const myButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("enterButton");
-  myButton.addEventListener("click", mybuttonHandler);
-  let events: Event[] = [];
+    const inputIntpret: HTMLInputElement = <HTMLInputElement>document.getElementById("interpret");
+    const inputPrice: HTMLInputElement = <HTMLInputElement>document.getElementById("price");
+    const display: HTMLElement = <HTMLElement>document.getElementById("display");
+    const button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("EnterButton");
+    button.addEventListener("click", ButtonHandler);
+    let events: Event[] = [];
 
-  class Event {
-    interpret: string;
-    price: number;
-    constructor(interpret: string, price: number) {
-      this.interpret = interpret;
-      this.price = price;
+    class Event {
+        interpret: string;
+        price: number;
+        constructor(interpret: string, price: number) {
+            this.interpret = interpret;
+            this.price = price;
+        }
+        set interpretName(name: string) {
+            this.interpret = name;
+        }
+        get interpretName(): string {
+            return this.interpret;
+        }
+        set priceZahl(price: number) {
+            this.price = price;
+        }
+        get priceZahl(): number {
+            return this.price;
+        }
     }
-    set interpretInput(name: string) {
-      this.interpret = name;
+    aufrufen();
+    show(events);
+
+    function ButtonHandler(): void {
+        let interpretValue: string = inputIntpret.value;
+        let priceValue: number = Number(inputPrice.value);
+
+        let event: Event = new Event(interpretValue, priceValue);
+        events.push(event);
+        console.log(events);
+
+        let neuTR: HTMLTableRowElement = document.createElement("tr");
+        let neuInterpret: HTMLTableCellElement = document.createElement("td");
+        neuInterpret.textContent = interpretValue;
+        let neuPrice: HTMLTableCellElement = document.createElement("td");
+        neuPrice.textContent = String(priceValue);
+        let deleteButton: HTMLButtonElement = document.createElement("button");
+        deleteButton.addEventListener("click", function (): void {
+            deleteevent(neuTR, event);
+        });
+        deleteButton.style.color = "red";
+        deleteButton.textContent = "delete";
+
+        display.appendChild(neuTR);
+        neuTR.appendChild(neuInterpret);
+        neuTR.appendChild(neuPrice);
+        neuTR.appendChild(deleteButton);
+        speichern();
     }
-    get interpretName(): string {
-      return this.interpret;
+    function show(aktuelleEvents: Array<Event>): void {
+        for (let aktuellerEvent of aktuelleEvents) {
+            let interpretValue: string = aktuellerEvent.interpret;
+            let priceValue: number = aktuellerEvent.price;
+
+            let neuTR: HTMLTableRowElement = document.createElement("tr");
+            let neuInterpret: HTMLTableCellElement = document.createElement("td");
+            neuInterpret.textContent = interpretValue;
+            let neuPrice: HTMLTableCellElement = document.createElement("td");
+            neuPrice.textContent = String(priceValue);
+            let löschButton: HTMLButtonElement = document.createElement("button");
+            löschButton.addEventListener("click", function (): void {
+                deleteevent(neuTR, aktuellerEvent);
+            });
+            löschButton.style.color = "red";
+            löschButton.textContent = "delete";
+
+            display.appendChild(neuTR);
+            neuTR.appendChild(neuInterpret);
+            neuTR.appendChild(neuPrice);
+            neuTR.appendChild(löschButton);
+        }
     }
-    set priceInput(price: number) {
-      this.price = price;
+    function deleteevent(parentElement: HTMLDivElement, event: Event): void {
+        display.removeChild(parentElement);
+        events.splice(events.indexOf(event) - 1, 1);
+        console.log(events);
+        speichern();
     }
-    get priceInput(): number {
-      return this.price;
+    function speichern(): void {
+        let arrayString: string = JSON.stringify(events);
+        localStorage.setItem("event", arrayString);
     }
-  }
-  load();
-  
-
-
-  function mybuttonHandler(): void {
-    let interpretValue: string = interpretInput.value;
-    let priceValue: number = Number(priceInput.value);
-    let deleteButton: HTMLButtonElement = document.createElement("button");
-    deleteButton.textContent = "Delete";
-
-
-
-    const newZeile: HTMLTableRowElement = document.createElement("tr");
-    const newInterpret: HTMLTableCellElement = document.createElement("td");
-    newInterpret.textContent = interpretValue;
-    const newPrice: HTMLTableCellElement = document.createElement("td");
-    newPrice.textContent = String(priceValue);
-
-    deleteButton.addEventListener("click", deleteEvent);
-
-
-    display.appendChild(newZeile);
-    newZeile.appendChild(newInterpret);
-    newZeile.appendChild(newPrice);
-    newZeile.appendChild(deleteButton);
-
-
-    function deleteEvent(): void {
-      newZeile.removeChild(newInterpret);
-      newZeile.removeChild(newPrice);
-      newZeile.removeChild(deleteButton);
-
-
+    function aufrufen(): void {
+        let stringFromLocalStorage: string = localStorage.getItem("event");
+        let arrayIGotFromStorage: Event[] = JSON.parse(stringFromLocalStorage);
+        for (let event of arrayIGotFromStorage) {
+            events[events.length] = event;
+        }
     }
-    save();
-
-  }
-
-  function save(): void {
-    let arrayString: string = JSON.stringify(events);
-    localStorage.setItem("event", arrayString);
-  }
-
-
-  function load(): void {
-    let stringFromLocalStorage: string = localStorage.getItem("event");
-    let arrayIGotFromStorage: Event[] = JSON.parse(stringFromLocalStorage);
-    for (let event of arrayIGotFromStorage) {
-      events[events.length] = event;
-    }
-  }}
+}
