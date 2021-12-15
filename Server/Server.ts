@@ -1,6 +1,6 @@
 import * as http from "http";
 
-
+namespace Server {
 const hostname: string = "127.0.0.1"; 
 const port: number = 3000; 
 
@@ -25,15 +25,14 @@ const server: http.Server = http.createServer(
         case "/": 
           response.write("Server erreichbar");
           break;
-        case "/convertDate": 
-            let day: string = url.searchParams.get("date");
-            let month: string = url.searchParams.get("month");
-            let year: string = url.searchParams.get("year");
-            response.write("Day:" + day + "; Monat" + month + "; Jahr" + year );
+          case "/convertDate": 
+          let date: string = url.searchParams.get("date");
+          console.log(date);
+          response.write("date-ges: " + date);
             break;
             
-        default:
-            response.statusCode = 404;
+            default:
+                response.statusCode = 404;
       }
       response.end(); 
     }
@@ -43,3 +42,4 @@ const server: http.Server = http.createServer(
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}`); 
   });
+}
