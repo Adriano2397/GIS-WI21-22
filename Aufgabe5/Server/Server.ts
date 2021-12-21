@@ -26,9 +26,14 @@ const server: http.Server = http.createServer(
           response.write("Server erreichbar");
           break;
           case "/convertDate": 
-          let date: string = url.searchParams.get("date");
+          let date: string = url.searchParams.get("date-ges");
+          const dateArray: String [] = date.split("-",3);
+            let dateYear: String = dateArray[0];
+            let dateMonth: String = dateArray[1];
+            let dateDay: String = dateArray[2]
           console.log(date);
-          response.write("date-ges: " + date);
+
+          response.write("Tag :" +  dateDay + "Monat: " + dateMonth + "Jahr: " + dateYear);
             break;
             
             default:
