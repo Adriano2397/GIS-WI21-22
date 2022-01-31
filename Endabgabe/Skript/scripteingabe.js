@@ -1,11 +1,13 @@
 "use strict";
-var ProduktTabelle;
-(function (ProduktTabelle) {
+var Eingabe;
+(function (Eingabe) {
     const inputName = document.getElementById("Produktname");
     const inputAblaufdatum = document.getElementById("Ablaufdatum");
     const inputNotiz = document.getElementById("Notiz");
     const myButton = document.getElementById("EnterButton");
+    const vorhandeneEingaben = document.getElementById("vorhandeneProdukte");
     myButton.addEventListener("click", mybuttonHandler);
+    einträgehinzufügen();
     function mybuttonHandler() {
         // tslint:disable-next-line: variable-name
         let Namevalue = inputName.value;
@@ -38,5 +40,17 @@ var ProduktTabelle;
             body: JSON.stringify(produkt)
         });
     }
-})(ProduktTabelle || (ProduktTabelle = {}));
+    async function einträgehinzufügen() {
+        let response = await fetch("http://localhost:3000/produkt", {
+            method: "GET"
+        });
+        let antwort = await response.text();
+        let produkte = JSON.parse(antwort);
+        for (let produkt of produkte) {
+            const newEingabe = document.createElement("option");
+            newEingabe.value = produkt.Name;
+            vorhandeneEingaben.appendChild(newEingabe);
+        }
+    }
+})(Eingabe || (Eingabe = {}));
 //# sourceMappingURL=scripteingabe.js.map

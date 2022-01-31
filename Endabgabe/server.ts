@@ -43,6 +43,12 @@ async function dbAddOrEdit(db: string, collection: string, request: http.Incomin
   
   });
 }
+async function remove(db: string, collection: string, requestObject: any, request: http.IncomingMessage): Promise<void> {
+    await mongoClient.connect();
+    await mongoClient.db(db).collection(collection).deleteOne(requestObject);
+  
+}
+
 
 const server: http.Server = http.createServer(
     async (request: http.IncomingMessage, response: http.ServerResponse) => {
@@ -66,6 +72,9 @@ const server: http.Server = http.createServer(
           case"/details": {
             await dbFind("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id"))}, response);
             
+          }
+          case"/remove": {
+            await remove("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id"))}, request);
           }
           default:
             response.statusCode = 404;

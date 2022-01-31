@@ -1,8 +1,9 @@
 "use strict";
-var ProduktTabelle;
-(function (ProduktTabelle) {
+var detailansicht;
+(function (detailansicht) {
     const display = document.getElementById("display");
     const searchURI = new URLSearchParams(window.location.search);
+    const einträge = document.createElement("option");
     console.log(searchURI.get("id"));
     get();
     async function get() {
@@ -23,6 +24,7 @@ var ProduktTabelle;
         let deletebutton = document.createElement("button");
         deletebutton.textContent = "Löschen";
         deletebutton.style.color = "red";
+        deletebutton.style.background = "black";
         const newNameElement = document.createElement("td");
         newNameElement.textContent = newName;
         const newAblaufdatumElement = document.createElement("td");
@@ -42,5 +44,11 @@ var ProduktTabelle;
         newReihe.appendChild(newEingabedatumElement);
         newReihe.appendChild(deletebutton);
     }
-})(ProduktTabelle || (ProduktTabelle = {}));
+    async function löschen(id) {
+        document.location.href = "Detailansicht.html?id=" + id;
+        await fetch("http://localhost:3000/remove?id=" + id, {
+            method: "POST"
+        });
+    }
+})(detailansicht || (detailansicht = {}));
 //# sourceMappingURL=scriptdetailansicht.js.map

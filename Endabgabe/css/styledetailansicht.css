@@ -1,5 +1,6 @@
 body{
-    color: rgb(0, 0, 0);;
+    color: rgb(0, 0, 0);
+    background-color: rgb(171, 231, 231) ;
     }
     
 nav{
@@ -8,16 +9,10 @@ nav{
     color:#fdfdfd rgb(10, 20, 7);;
     }
 
-body{
-   
-    margin:0 auto 5px auto;
-    background:#07a737;
-    }
-    
 footer{
     width:100%;
     height:20px;
-    color: black;
+    color: rgb(255, 255, 255);
     }
 #display{
     position: sticky;

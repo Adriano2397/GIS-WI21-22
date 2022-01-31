@@ -30,6 +30,10 @@ async function dbAddOrEdit(db, collection, request) {
         mongoClient.db(db).collection(collection).insertOne(produkt);
     });
 }
+async function remove(db, collection, requestObject, request) {
+    await mongoClient.connect();
+    await mongoClient.db(db).collection(collection).deleteOne(requestObject);
+}
 const server = http.createServer(async (request, response) => {
     response.statusCode = 200;
     response.setHeader("Access-Control-Allow-Origin", "*"); // bei CORS Fehler
@@ -49,6 +53,9 @@ const server = http.createServer(async (request, response) => {
         }
         case "/details": {
             await dbFind("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id")) }, response);
+        }
+        case "/remove": {
+            await remove("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id")) }, request);
         }
         default:
             response.statusCode = 404;

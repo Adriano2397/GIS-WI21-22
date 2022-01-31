@@ -1,6 +1,6 @@
 "use strict";
-var ProduktTabelle;
-(function (ProduktTabelle) {
+var Index;
+(function (Index) {
     const display = document.getElementById("display");
     get();
     async function get() {
@@ -35,5 +35,5 @@ var ProduktTabelle;
     function seiteaufrufen(id) {
         document.location.href = "Detailansicht.html?id=" + id;
     }
-})(ProduktTabelle || (ProduktTabelle = {}));
+})(Index || (Index = {}));
 //# sourceMappingURL=scriptIndex.js.map
