@@ -1,69 +1,21 @@
 namespace ProduktTabelle {
-
-    const inputName: HTMLInputElement = <HTMLInputElement>document.getElementById("Name");
-    const inputAblaufdatum: HTMLInputElement = <HTMLInputElement>document.getElementById("Ablaufdatum"); 
-    const inputNotiz: HTMLInputElement = <HTMLInputElement>document.getElementById("Notiz");  
     const display: HTMLElement = <HTMLElement>document.getElementById("display"); 
-    const updatebutton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("updatebutton");
-    updatebutton.addEventListener("click", update);
+    
+  
+     
+    
     get();
     
     interface Produkte {
+        _id?: string;
         Name: string;
         Ablaufdatum: Date;
-        Notiz: string;
-        Eingabedatum: Date;
-    }
-    
-    function update(): void {
-        // tslint:disable-next-line: variable-name
-        let Namevalue: string = inputName.value;
-        // tslint:disable-next-line: variable-name
-        let Ablaufdatumvalue: Date = new Date(inputAblaufdatum.value);
-        // tslint:disable-next-line: variable-name
-        let Notizvalue: string = inputNotiz.value;
-        // tslint:disable-next-line: variable-name
-        let Eingabedatumvalue: Date = new Date();
-  
-    
-        const newNameElement: HTMLTableCellElement = document.createElement("td"); 
-        newNameElement.textContent = Namevalue;
-        const newPriceElement: HTMLTableCellElement = document.createElement("td");
-        newPriceElement.textContent = Ablaufdatumvalue.toLocaleDateString();
-        const newNotizElement: HTMLTableCellElement = document.createElement("td"); 
-        newNotizElement.textContent = Notizvalue;
-        const newEingabedatumElement: HTMLTableCellElement = document.createElement("td"); 
-        newEingabedatumElement.textContent = Eingabedatumvalue.toLocaleDateString();
         
     
-        const newReihe: HTMLTableRowElement = document.createElement("tr"); 
-      
-        display.appendChild(newReihe);
-        newReihe.appendChild(newNameElement);
-        newReihe.appendChild(newPriceElement);
-        newReihe.appendChild(newNotizElement);
-        newReihe.appendChild(newEingabedatumElement);
-    
-        let produkt: Produkte = {
-          Name: Namevalue, 
-          Ablaufdatum: Ablaufdatumvalue,
-          Notiz: Notizvalue,
-          Eingabedatum: Eingabedatumvalue
-        };
-        post(produkt);
-      
-    }
-    
-    async function post(produkt: Produkte): Promise<void> {
-      console.log(produkt);
-      await fetch("http://localhost:3000/concertEvents", {
-        method: "POST",
-        body: JSON.stringify(produkt)
-      });
     }
     
     async function get(): Promise<void> {
-      let response: Response = await fetch("http://localhost:3000/concertEvents", {
+      let response: Response = await fetch("http://localhost:3000/produkt", {
         method: "GET"
       });
       let antwort: string = await response.text();
@@ -75,26 +27,29 @@ namespace ProduktTabelle {
     
     function ausgabe(produkt: Produkte): void {
       let newName: string = produkt.Name;
-      let newAblaufdatum: Date = produkt.Ablaufdatum;
-      let newNotiz: string = produkt.Notiz;
-      let newEingabedatum: Date = produkt.Eingabedatum;
-  
-    
+      let newAblaufdatum: Date = new Date(produkt.Ablaufdatum);
+      let detailsbutton: HTMLButtonElement = document.createElement("button");
+      detailsbutton.textContent = "Details";
+      detailsbutton.style.color = "blue";
+      
       const newNameElement: HTMLTableCellElement = document.createElement("td"); 
       newNameElement.textContent = newName;
-      const newPriceElement: HTMLTableCellElement = document.createElement("td");
-      newPriceElement.textContent = String(newAblaufdatum);
-      const newNotizElement: HTMLTableCellElement = document.createElement("td"); 
-      newNotizElement.textContent = newNotiz;
-      const newEingabedatumElement: HTMLTableCellElement = document.createElement("td"); 
-      newEingabedatumElement.textContent = String(newEingabedatum);
-      
+      const newAblaufdatumElement: HTMLTableCellElement = document.createElement("td");
+      newAblaufdatumElement.textContent = (newAblaufdatum.toLocaleDateString());
       const newReihe: HTMLTableRowElement = document.createElement("tr"); 
+      detailsbutton.addEventListener("click", function(): void {
+        seiteaufrufen(produkt._id);
+    });
     
       display.appendChild(newReihe);
       newReihe.appendChild(newNameElement);
-      newReihe.appendChild(newPriceElement);
-      newReihe.appendChild(newNotizElement);
-      newReihe.appendChild(newEingabedatumElement);
+      newReihe.appendChild(newAblaufdatumElement);
+      newReihe.appendChild(detailsbutton);
+      
     }
-  }
+    
+    function seiteaufrufen(id: String): void {
+        document.location.href = "Detailansicht.html?id=" + id;
+    }
+
+}

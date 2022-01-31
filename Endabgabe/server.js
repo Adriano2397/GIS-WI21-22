@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const http = require("http");
 const mongo = require("mongodb");
-const hostname = "127.0.0.1"; // localhost
+const hostname = "127.0.0.1";
 const port = 3000;
-const mongoUrl = "mongodb://localhost:27017"; // für lokale MongoDB
+const mongoUrl = "mongodb://localhost:27017";
 let mongoClient = new mongo.MongoClient(mongoUrl);
 async function dbFind(db, collection, requestObject, response) {
+    // tslint:disable-next-line: typedef
     let result = await mongoClient
         .db(db)
         .collection(collection)
@@ -34,7 +35,7 @@ const server = http.createServer(async (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*"); // bei CORS Fehler
     let url = new URL(request.url || "", `http://${request.headers.host}`);
     switch (url.pathname) {
-        case "/concertEvents": {
+        case "/produkt": {
             await mongoClient.connect();
             switch (request.method) {
                 case "GET":
@@ -45,6 +46,9 @@ const server = http.createServer(async (request, response) => {
                     break;
             }
             break;
+        }
+        case "/details": {
+            await dbFind("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id")) }, response);
         }
         default:
             response.statusCode = 404;

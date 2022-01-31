@@ -1,15 +1,18 @@
 body{
-    color: rgb(10, 20, 7);;
-    background-color: rgb(62, 120, 228);
+    color: rgb(0, 0, 0);;
     }
     
 nav{
     height: 10px;
     margin:0 0 0px 0;
-    color:#07a737 rgb(10, 20, 7);;
+    color:#fdfdfd rgb(10, 20, 7);;
     }
 
-
+body{
+   
+    margin:0 auto 5px auto;
+    background:#07a737;
+    }
     
 footer{
     width:100%;

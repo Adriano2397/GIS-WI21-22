@@ -1,9 +1,9 @@
 import * as http from "http";
 import * as mongo from "mongodb";
 
-const hostname: string = "127.0.0.1"; // localhost
+const hostname: string = "127.0.0.1"; 
 const port: number = 3000;
-const mongoUrl: string = "mongodb://localhost:27017"; // für lokale MongoDB
+const mongoUrl: string = "mongodb://localhost:27017"; 
 let mongoClient: mongo.MongoClient = new mongo.MongoClient(mongoUrl);
 
 
@@ -15,7 +15,10 @@ interface Produkte {
   Eingabedatum: Date;
 }
 
+
+
 async function dbFind(db: string, collection: string, requestObject: any, response: http.ServerResponse): Promise<void> {
+  // tslint:disable-next-line: typedef
   let result = await mongoClient
       .db(db)
       .collection(collection)
@@ -48,7 +51,7 @@ const server: http.Server = http.createServer(
       let url: URL = new URL(request.url || "", `http://${request.headers.host}`);
       
       switch (url.pathname) {
-        case "/concertEvents": {
+        case "/produkt": {
           await mongoClient.connect();
           switch (request.method) {
             case "GET":
@@ -59,6 +62,10 @@ const server: http.Server = http.createServer(
               break;
               }
           break;
+          }
+          case"/details": {
+            await dbFind("db", "Produkte", { _id: new mongo.ObjectId(url.searchParams.get("id"))}, response);
+            
           }
           default:
             response.statusCode = 404;

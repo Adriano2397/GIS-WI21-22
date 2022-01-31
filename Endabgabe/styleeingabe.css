@@ -20,3 +20,7 @@ footer{
     position: sticky;
     color: rgb(25, 22, 37);
 }
+::placeholder{
+    color: rgb(78, 96, 197);
+
+}
